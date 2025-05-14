@@ -41,7 +41,8 @@ jobs:
         run: echo ${{ secrets.DISCORD_WEBHOOK }}
         
       - name: Notify Discord
-        uses: xenova/discord-webhook-action@v1
+        uses: rjstone/discord-webhook-notify@v1
         with:
-          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
-          message: "✅ Website successfully deployed from obsirium/website!"
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          severity: info
+          details: "✅ Website successfully deployed from obsirium/website!"
