@@ -22,18 +22,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout Code                                 #Gets your source code
         uses: actions/checkout@v4
 
-      - name: Setup Pages
+      - name: Setup Pages                                  #Sets up GitHub Pages env
         uses: actions/configure-pages@v4
 
-      - name: Upload Static Files
+      - name: Upload Static Files                          #Packages files to deploy
         uses: actions/upload-pages-artifact@v3
         with:
           path: .  
           
-      - name: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages                      #deploys the site
         id: deployment
         uses: actions/deploy-pages@v4
         
