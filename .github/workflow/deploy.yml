@@ -32,7 +32,13 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: .  
-
+          
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        
+      - name: Notify Discord
+        uses: Ilshidur/action-discord@master
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          message: "✅ Website successfully deployed from obsirium/website!"
