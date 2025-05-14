@@ -38,6 +38,7 @@ jobs:
         uses: actions/deploy-pages@v4
         
       - name: Notify Discord
+        if: always()
         uses: Ilshidur/action-discord@master
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
