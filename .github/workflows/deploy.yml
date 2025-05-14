@@ -36,6 +36,9 @@ jobs:
       - name: Deploy to GitHub Pages                      #deploys the site
         id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Check if DISCORD_WEBHOOK secret is available
+        run: echo ${{ secrets.DISCORD_WEBHOOK }}
         
       - name: Notify Discord
         if: always()
