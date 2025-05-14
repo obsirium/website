@@ -41,8 +41,7 @@ jobs:
         run: echo ${{ secrets.DISCORD_WEBHOOK }}
         
       - name: Notify Discord
-        if: always()
-        uses: Ilshidur/action-discord@master
+        uses: xenova/discord-webhook-action@v1
         with:
-          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK }}
           message: "✅ Website successfully deployed from obsirium/website!"
