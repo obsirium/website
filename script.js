@@ -13,24 +13,12 @@ const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            subject: document.getElementById('subject')?.value || '',
-            message: document.getElementById('message').value
-        };
-
-        // Here you would typically send this data to your backend
-        console.log('Form submitted:', formData);
-        
-        // Show success message
-        showNotification('Thank you for your message! We will get back to you soon.');
-        
-        // Clear form
+        // Clear form fields
         this.reset();
+        // Show success notification
+        showNotification('Thank you for your message! We will get back to you soon.');
     });
-}
+} 
 
 // Navbar scroll effect
 window.addEventListener('scroll', function() {
@@ -62,13 +50,13 @@ function showNotification(message) {
     
     document.body.appendChild(notification);
     
-    // Remove notification after 3 seconds
+    // Remove notification after 5 seconds
     setTimeout(() => {
         notification.style.animation = 'slideOut 0.5s ease-out';
         setTimeout(() => {
             document.body.removeChild(notification);
         }, 500);
-    }, 3000);
+    }, 5000);
 }
 
 // Add animation keyframes
@@ -96,4 +84,4 @@ style.textContent = `
         }
     }
 `;
-document.head.appendChild(style); 
+document.head.appendChild(style);
