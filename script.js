@@ -12,11 +12,33 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
+        // Get form data
+        const formData = new FormData(this);
+        
+        // Submit to Formspree
+        fetch(this.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                // Clear form fields
+                this.reset();
+                // Show success notification
+                showNotification('Thank you for your message! We will get back to you soon.');
+            } else {
+                showNotification('Oops! There was a problem submitting your form. Please try again.');
+            }
+        })
+        .catch(error => {
+            showNotification('Oops! There was a problem submitting your form. Please try again.');
+        });
+        
+        // Prevent default form submission
         e.preventDefault();
-        // Clear form fields
-        this.reset();
-        // Show success notification
-        showNotification('Thank you for your message! We will get back to you soon.');
     });
 } 
 
