@@ -8,15 +8,21 @@
 }
 
 :root {
-    --primary-color: #4d5960;
-    --text-color: #6a777e;
+    --primary-color: #0f172a;
+    --text-color: #475569;
     --light-bg: #FFFFFF;
-    --accent-color: #3b82f6;
+    --accent-color: #2563eb;
+    --page-bg: #f8fafc;
+    --muted: #e5e7eb;
+    --card-bg: #ffffff;
 }
 
 body {
-    line-height: 1.6;
+    line-height: 1.65;
     color: var(--text-color);
+    background: var(--page-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
@@ -27,9 +33,9 @@ body {
 
 /* Navigation */
 nav {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 1rem 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06);
     position: fixed;
     width: 100%;
     top: 0;
@@ -69,77 +75,83 @@ nav {
 .nav-links a {
     text-decoration: none;
     color: var(--primary-color);
-    transition: all 0.3s ease;
+    transition: color 0.2s ease;
     font-weight: 600;
-    font-size: 1.1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
+    font-size: 1rem;
+    padding: 0.5rem 0.25rem;
     position: relative;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
-    color: white;
-    background-color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    color: var(--accent-color);
 }
 
-.nav-links a.active {
-    background-color: var(--primary-color);
-    color: white;
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -8px;
+    height: 2px;
+    background: var(--accent-color);
+    opacity: 0;
+    transform: scaleX(0.6);
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
+.nav-links a:hover::after,
+.nav-links a.active::after { opacity: 1; transform: scaleX(1); }
 
 .nav-action {
     margin-left: auto;  /* Push to the right */
 }
 
 .nav-action .cta-button {
-    padding: 0.75rem 1.5rem;  /* Slightly smaller than regular CTA buttons */
+    padding: 0.6rem 1rem;
     font-size: 0.95rem;
-    background-color: transparent;
-    border: 2px solid var(--primary-color);
-    color:var(--primary-color); 
+    background: linear-gradient(180deg, var(--accent-color), #1d4ed8);
+    border: 0;
+    color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.25);
 }
 .nav-action .cta-button:hover {
-    padding: 0.75rem 1.5rem;  /* Slightly smaller than regular CTA buttons */
-    font-size: 0.95rem;
-    border: 2px solid var(--primary-color);
-    background-color: var(--primary-color);
-    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
 }
 
 /* Hero Sections */
 .hero, .about-hero, .contact-hero {
-    padding: 16rem 8rem 4rem;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--text-color) 100%);
+    padding: 14rem 2rem 4rem;
+    background: radial-gradient(1200px 500px at 50% -100px, rgba(37, 99, 235, 0.15), transparent),
+                linear-gradient(135deg, #ffffff 0%, #eef2ff 100%);
     text-align: center;
 }
 
 .hero h1, .about-hero h1, .contact-hero h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-    color: #303540;
+    font-size: 3.25rem;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    color: var(--primary-color);
 }
 
 .subtitle {
-    font-size: 1.25rem;
-    color: #4b5563;
+    font-size: 1.125rem;
+    color: #64748b;
     margin-bottom: 2rem;
 }
 
 /* Features Section */
 .features {
-    padding: 4rem 0;
-    background: white;
+    padding: 5rem 0;
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
 }
 
 .section-title {
     text-align: center;
-    margin-bottom: 3rem;
-    font-size: 2.5rem;
-    color: var(--text-color);
+    margin-bottom: 2.5rem;
+    font-size: 2.25rem;
+    color: var(--primary-color);
 }
 
 .features-grid {
@@ -150,15 +162,17 @@ nav {
 
 .feature-card {
     padding: 2rem;
-    background: var(--light-bg);
+    background: var(--card-bg);
     border-radius: 1rem;
     text-align: center;
-    transition: transform 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid var(--muted);
+    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.04);
 }
 
 .feature-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 30px rgba(2, 6, 23, 0.08);
 }
 
 .feature-card h3 {
@@ -168,14 +182,15 @@ nav {
 
 /* About Page */
 .about-content {
-    padding: 16rem 0 4rem;  /* Increased top padding to account for fixed nav */
+    padding: 12rem 0 4rem;  /* Increased top padding to account for fixed nav */
     background: white;
 }
 
 .about-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1fr; /* Center single column */
+    gap: 3rem;
+    justify-items: center;
 }
 
 .team-grid {
@@ -183,6 +198,41 @@ nav {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
+}
+
+/* About text card */
+.about-text {
+    text-align: left;
+    max-width: 820px;
+    padding: 2rem 2.25rem;
+    background: var(--card-bg);
+}
+.about-text h2 {
+    margin-bottom: 0.5rem;
+}
+.about-text p {
+    margin-bottom: 1rem;
+}
+.about-text ul {
+    margin-top: 0.5rem;
+    list-style: none;
+    display: inline-block;
+    text-align: left;
+}
+.about-text ul li {
+    margin: 0.4rem 0;
+    position: relative;
+    padding-left: 1.25rem;
+}
+.about-text ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65rem;
+    width: 6px;
+    height: 6px;
+    background: var(--accent-color);
+    border-radius: 999px;
 }
 
 .team-member {
@@ -199,7 +249,7 @@ nav {
 
 /* Contact Page */
 .contact-content {
-    padding: 16rem 0 4rem;  /* Increased top padding to account for fixed nav */
+    padding: 12rem 0 4rem;  /* Increased top padding to account for fixed nav */
     background: white;
 }
 
@@ -211,8 +261,10 @@ nav {
 
 .contact-info {
     padding: 2rem;
-    background: var(--light-bg);
+    background: var(--card-bg);
     border-radius: 1rem;
+    border: 1px solid var(--muted);
+    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.04);
 }
 
 .info-item {
@@ -242,17 +294,19 @@ nav {
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 1rem;
-    border: 2px solid #e5e7eb;
-    border-radius: 0.5rem;
+    padding: 1rem 1.125rem;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 0.6rem;
     font-size: 1rem;
-    transition: border-color 0.3s;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    background: #ffffff;
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: var(--primary-color);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
 }
 
 .form-group textarea {
@@ -262,30 +316,43 @@ nav {
 
 .cta-button {
     display: inline-block;
-    padding: 1rem 2rem;
-    background: var(--primary-color);
+    padding: 0.9rem 1.25rem;
+    background: linear-gradient(180deg, var(--accent-color), #1d4ed8);
     color: white;
     text-decoration: none;
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 0.6rem;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
+    box-shadow: 0 10px 20px rgba(37, 99, 235, 0.18);
 }
 
 .cta-button:hover {
-    background-color:  var(--primary-color);
-    border:  var(--primary-color);;
     transform: translateY(-2px);
+    box-shadow: 0 16px 32px rgba(37, 99, 235, 0.25);
+}
+
+/* White variant for CTA (used in nav and hero on index) */
+.cta-button--white {
+    background: white;
+    color: var(--primary-color);
+    border: 2px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.18);
+}
+.cta-button--white:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px rgba(37, 99, 235, 0.28);
 }
 
 /* Footer */
 footer {
-    background: var(--text-color);
-    color: white;
-    padding: 2rem 0;
+    background: linear-gradient(180deg, #ffffff 0%, #eaf1ff 100%);
+    color: var(--primary-color);
+    padding: 2.5rem 0;
     text-align: center;
+    border-top: 1px solid rgba(15, 23, 42, 0.06);
 }
 
 /* Responsive Design */
@@ -319,7 +386,7 @@ footer {
     display: flex;
     align-items: center;
     text-align: center;
-    background: linear-gradient(135deg,white 0%, var(--primary-color) 100%);
+    background: linear-gradient(135deg,white 0%, #eef2ff 100%);
 }
 
 .hero-content {
@@ -333,9 +400,10 @@ footer {
 }
 
 .logo-large img {
-    height: 240px;
+    height: 220px;
     width: auto;
-    opacity: 0.6;
+    opacity: 0.7;
+    filter: saturate(1.1);
 }
 
 .cta-buttons {
@@ -347,7 +415,7 @@ footer {
 
 .cta-button.secondary {
     background: transparent;
-    border: 2px solid var(--primary-color);
+    border: 2px solid #cbd5e1;
     color: var(--primary-color);
 }
 
@@ -358,9 +426,9 @@ footer {
 
 /* CTA Section */
 .cta-section {
-    padding: 6rem 0;
-    background: linear-gradient(135deg,white 0%, var(--primary-color) 100%);
-    color: white;
+    padding: 5rem 0;
+    background: linear-gradient(180deg, #ffffff 0%, #eaf1ff 100%);
+    color: var(--primary-color);
     text-align: center;
 }
 
@@ -377,7 +445,7 @@ footer {
 
 .cta-section .cta-button {
     background: white;
-    color: var(--primary-color);
+    color: #0f172a;
 }
 
 .cta-section .cta-button:hover {
@@ -396,7 +464,7 @@ footer {
 .footer-logo {
     font-size: 1.5rem;
     font-weight: bold;
-    color: white;
+    color: var(--primary-color);
 }
 
 .footer-logo img {
@@ -410,19 +478,21 @@ footer {
 }
 
 .footer-links a {
-    color: white;
+    color: var(--primary-color);
     text-decoration: none;
     opacity: 0.8;
-    transition: opacity 0.3s;
+    transition: color 0.2s, opacity 0.2s;
 }
 
 .footer-links a:hover {
     opacity: 1;
+    color: var(--accent-color);
 }
 
 .copyright {
     opacity: 0.7;
     font-size: 0.9rem;
+    color: var(--text-color);
 }
 
 /* Animations */
